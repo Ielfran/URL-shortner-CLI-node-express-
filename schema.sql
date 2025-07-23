@@ -1,0 +1,22 @@
+CREATE DATABASE IF NOT EXISTS url_shortener_db;
+USE url_shortener_db;
+
+CREATE TABLE IF NOT EXISTS urls (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    original_url TEXT NOT NULL,
+    short_code VARCHAR(10) NOT NULL UNIQUE,
+    access_count INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP NULL,
+    INDEX idx_short_code (short_code)
+);
+
+CREATE TABLE IF NOT EXISTS access_logs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    url_id INT NOT NULL,
+    accessed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ip_address VARCHAR(45),
+    FOREIGN KEY (url_id) REFERENCES urls(id) ON DELETE CASCADE
+);
+
