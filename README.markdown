@@ -79,7 +79,3 @@ A super simple URL shortener API built with Node.js, Express, and MySQL. It supp
   ```bash
   curl -X DELETE -H "Content-Type: application/json" -d '{"apiKey":"your-secret-api-key"}' http://localhost:3000/shorten/mycode
   ```
-  Response: 204 No Content.
-
-## License
-ISC
