@@ -10,7 +10,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-//Request logging middleware
 app.use((req, res, next) => {
     logger.info(`${req.method} ${req.url} from ${req.ip}`);
     next();

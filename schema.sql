@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS url_shortener;
-USE url_shortener;
+CREATE DATABASE IF NOT EXISTS url_short;
+USE url_short;
 
 CREATE TABLE IF NOT EXISTS urls (
     id INT AUTO_INCREMENT PRIMARY KEY,

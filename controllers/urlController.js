@@ -52,7 +52,7 @@ exports.createShortUrl = async (req, res) => {
     const [rows] = await db.query('SELECT * FROM urls WHERE id = ?', [result.insertId]);
     const response = formatUrlResponse(rows[0], process.env.BASE_URL);
 
-    // Generate QR code
+//Generating QR code
     response.qrCode = await QRCode.toDataURL(response.shortUrl);
 
     logger.info(`Created short URL: ${response.shortUrl}`);
