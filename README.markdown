@@ -1,6 +1,6 @@
 # URL Shortener
 
-A simple URL shortener API built with Node.js, Express, and MySQL. It supports creating short URLs, custom short codes, URL expiration, QR codes, access tracking, and rate limiting.
+A super simple URL shortener API built with Node.js, Express, and MySQL. It supports creating short URLs, custom short codes, URL expiration, QR codes(text-based), access tracking, and rate limiting.
 
 ## Features
 - Shorten URLs with optional custom codes and expiration dates.
@@ -60,59 +60,15 @@ A simple URL shortener API built with Node.js, Express, and MySQL. It supports c
   ```bash
   curl -X POST -H "Content-Type: application/json" -d '{"url":"https://example.com","customCode":"mycode","expiresInDays":7}' http://localhost:3000/shorten
   ```
-  Response:
-  ```json
-  {
-    "id": 1,
-    "url": "https://example.com",
-    "shortCode": "mycode",
-    "shortUrl": "http://localhost:3000/mycode",
-    "accessCount": 0,
-    "createdAt": "2025-10-18T15:10:00Z",
-    "updatedAt": "2025-10-18T15:10:00Z",
-    "expiresAt": "2025-10-25T15:10:00Z",
-    "qrCode": "data:image/png;base64,..."
-  }
-  ```
 - **Redirect to Original URL**:
   Open `http://localhost:3000/mycode` in a browser to redirect to `https://example.com`.
 - **Get URL Details**:
   ```bash
   curl http://localhost:3000/shorten/mycode
   ```
-  Response:
-  ```json
-  {
-    "id": 1,
-    "url": "https://example.com",
-    "shortCode": "mycode",
-    "shortUrl": "http://localhost:3000/mycode",
-    "createdAt": "2025-10-18T15:10:00Z",
-    "updatedAt": "2025-10-18T15:10:00Z",
-    "expiresAt": "2025-10-25T15:10:00Z",
-    "qrCode": "data:image/png;base64,..."
-  }
-  ```
 - **Get URL Stats**:
   ```bash
   curl http://localhost:3000/shorten/mycode/stats
-  ```
-  Response:
-  ```json
-  {
-    "id": 1,
-    "url": "https://example.com",
-    "shortCode": "mycode",
-    "shortUrl": "http://localhost:3000/mycode",
-    "accessCount": 5,
-    "createdAt": "2025-10-18T15:10:00Z",
-    "updatedAt": "2025-10-18T15:10:00Z",
-    "expiresAt": "2025-10-25T15:10:00Z",
-    "accessLogs": [
-      {"accessed_at": "2025-10-18T15:15:00Z", "ip_address": "192.168.1.1"},
-      ...
-    ]
-  }
   ```
 - **Update a Short URL**:
   ```bash
